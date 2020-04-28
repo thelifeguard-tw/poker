@@ -6,6 +6,7 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 
 - Jose Barbosa <jose.barbosa@thoughtworks.com>
 - Piya Pakdeechaturun <piya.pakdeechaturun@thoughtworks.com>
+- Santiphap Watcharasukchit <santiphap.w@thoughtworks.com>
 
 
 
