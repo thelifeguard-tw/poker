@@ -8,9 +8,6 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 - Piya Pakdeechaturun <piya.pakdeechaturun@thoughtworks.com>
 - Santiphap Watcharasukchit <santiphap.w@thoughtworks.com>
 - Ampharin Ongvies <Ampharin.Ongv@thoughtworks.com>
-
-
-
-
+- Panachai Reinthavorn <Panachai.r@thoughtworks.com>
 
 minnn-tw
