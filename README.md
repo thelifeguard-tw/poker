@@ -11,4 +11,4 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 - Panachai Reinthavorn <Panachai.r@thoughtworks.com>
 - Narerkrit Sinrachtanant <narerkrit.s@thoughtworks.com>
 - Jasmine Ong <jasmine.ong@thoughtworks.com>
-- Natthapong Intharak <natthapong.i@thoughtworks.com>
+- Natthapong Intharak <natthapong.intharak@thoughtworks.com>
