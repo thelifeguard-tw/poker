@@ -7,10 +7,31 @@
   "author": "myob-pursuit@thoughtworks.com",
   "license": "MIT",
   "scripts": {
-    "start-client" : "yarn workspace client start",
-    "test-client" : "yarn workspace client test"
+    "start-client": "yarn workspace client start",
+    "test-client": "yarn workspace client test",
+    "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
+    "lintfix-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@types/babel__core": "^7.1.7",
+    "@types/node": "^13.13.4",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^3.1.3"
+  }
 }
