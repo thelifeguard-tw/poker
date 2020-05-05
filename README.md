@@ -2,6 +2,17 @@
 
 The poker game built by THELIFEGUARDS during beach time to show off how much we are awesome and cool and fun.
 
+## common commands
+### running app
+```
+yarn workspace client start
+```
+
+### running test
+```
+yarn workspace client test
+```
+
 ## Contributors
 
 - Jose Barbosa <jose.barbosa@thoughtworks.com>
