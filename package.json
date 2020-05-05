@@ -7,8 +7,10 @@
   "author": "myob-pursuit@thoughtworks.com",
   "license": "MIT",
   "scripts": {
-    "start-client" : "yarn workspace client start",
-    "test-client" : "yarn workspace client test"
+    "start-client": "yarn workspace client start",
+    "test-client": "yarn workspace client test",
+    "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-client-fix": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx"
   },
   "workspaces": [
     "packages/*"
