@@ -79,6 +79,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:3.1.3"
       ],
       [
+        "husky",
+        "npm:4.2.5"
+      ],
+      [
         "prettier",
         "npm:2.0.5"
       ],
@@ -117,6 +121,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:6.11.0"],
             ["eslint-config-react", "npm:1.1.7"],
             ["eslint-plugin-prettier", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:3.1.3"],
+            ["husky", "npm:4.2.5"],
             ["prettier", "npm:2.0.5"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:16.13.1"],
@@ -12546,6 +12551,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:6.11.0"],
             ["eslint-config-react", "npm:1.1.7"],
             ["eslint-plugin-prettier", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:3.1.3"],
+            ["husky", "npm:4.2.5"],
             ["prettier", "npm:2.0.5"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:20cfacfe6fc8434d85a7df8682a788583e5718dab1851365bcbcac246fcf2a8247307c3214084cd7309aa7cb222b31616245757096fc92a04c1c5739d5413cdd#npm:16.13.1"],
