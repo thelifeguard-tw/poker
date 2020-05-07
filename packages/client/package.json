@@ -28,7 +28,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
+    "lintfix": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lintfix",
+      "pre-push": "yarn test"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
