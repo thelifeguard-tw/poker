@@ -12,9 +12,14 @@
     "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
     "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx"
   },
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx}": [
+      "yarn format-client", "git add"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format-client",
+      "pre-commit": "lint-staged",
       "pre-push": "yarn test-client --watchAll=false"
     }
   },
@@ -22,6 +27,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2"
   }
 }
