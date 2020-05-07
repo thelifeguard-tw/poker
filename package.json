@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test-client --watchAll=false",
+      "pre-commit": "yarn format-client",
       "pre-push": "yarn test-client --watchAll=false"
     }
   },
