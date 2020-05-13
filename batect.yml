@@ -15,7 +15,6 @@ containers:
     enable_init_process: true
 
 tasks:
-
   start-game:
     description: Start the poker game
     run:
@@ -29,7 +28,7 @@ tasks:
     description: Run initial yarn install for node_modules cache
     run:
       container: poker-game
-      command: yarn
+      command: yarn --network-timeout 60000
 
   run-unit-tests:
     description: Run the unit tests
