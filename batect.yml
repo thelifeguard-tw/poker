@@ -1,0 +1,21 @@
+containers:
+  poker-game:
+    image: node:14.2.0-alpine3.11
+    volumes:
+      - local: .
+        container: /code
+    working_directory: /code
+    ports:
+      - local: 3000
+        container: 3000
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+
+tasks:
+
+  start-game:
+    description: Start the poker game
+    run:
+      container: poker-game
+      command: yarn workspace client start

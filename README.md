@@ -7,7 +7,7 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 ### running app
 
 ```
-yarn workspace client start
+./batect start-game
 ```
 
 ### running test
