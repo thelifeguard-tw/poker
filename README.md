@@ -13,7 +13,7 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 ### running test
 
 ```
-yarn workspace client test
+./batect run-unit-tests
 ```
 
 ## Required plugins
