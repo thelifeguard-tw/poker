@@ -27,7 +27,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test-client --watchAll=false"
+      "pre-push": "./batect run-unit-tests"
     }
   },
   "workspaces": [
