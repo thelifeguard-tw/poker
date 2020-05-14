@@ -13,7 +13,7 @@
     "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx"
   },
   "lint-staged": {
-    "packages/**/*.{js,jsx,ts,tsx}": [
+    "packages/client/**/*.{js,jsx,ts,tsx}": [
       "yarn format-client"
     ]
   },
