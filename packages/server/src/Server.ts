@@ -4,7 +4,7 @@ import path from 'path';
 import helmet from 'helmet';
 
 import express, { Request, Response, NextFunction } from 'express';
-import { BAD_REQUEST } from 'http-status-codes';
+import { BAD_REQUEST, OK } from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
@@ -36,6 +36,12 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add APIs
 app.use('/api', BaseRouter);
+
+// Add healthcheck
+app.get('/healthcheck', (req: Request, res: Response) => {
+  logger.info('the server is fine.')
+  return res.status(OK).json({status:'OK'});
+});
 
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
