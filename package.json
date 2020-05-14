@@ -10,11 +10,18 @@
     "start-client": "yarn workspace client start",
     "test-client": "yarn workspace client test",
     "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
-    "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx"
+    "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "start-server": "yarn workspace server start:dev",
+    "test-server": "yarn workspace server test",
+    "lint-server": "yarn workspace server lint",
+    "format-server": "yarn workspace server lint --fix"
   },
   "lint-staged": {
     "packages/client/**/*.{js,jsx,ts,tsx}": [
       "yarn format-client"
+    ],
+    "packages/server/**/*.{js,jsx,ts,tsx}": [
+      "yarn format-server"
     ]
   },
   "husky": {
