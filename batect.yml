@@ -23,6 +23,8 @@ tasks:
       ports:
         - local: 3000
           container: 3000
+    prerequisites:
+      - install-deps
 
   install-deps:
     description: Run initial yarn install for node_modules cache
