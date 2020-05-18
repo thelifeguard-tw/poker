@@ -1,6 +1,6 @@
 containers:
   poker-game:
-    image: node:14.2.0-alpine3.11
+    build_directory: ./containers/game-client/
     volumes:
       - local: .
         container: /code
@@ -27,16 +27,16 @@ tasks:
     prerequisites:
       - install-deps
 
-  start-server:
-    description: Start the poker server
-    run:
-      container: poker-game
-      command: yarn start-server
-      ports:
-        - local: 5000
-          container: 5000
-    prerequisites:
-      - install-deps
+  # start-server:
+  #   description: Start the poker server
+  #   run:
+  #     container: poker-game
+  #     command: yarn start-server
+  #     ports:
+  #       - local: 5000
+  #         container: 5000
+  #   prerequisites:
+  #     - install-deps
 
   install-deps:
     description: Run initial yarn install for node_modules cache
