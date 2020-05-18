@@ -8,6 +8,9 @@ containers:
       - type: cache
         name: node_modules
         container: /code/node_modules
+    ports:
+      - local: 3000
+        container: 3000
     working_directory: /code
     run_as_current_user:
       enabled: true
@@ -23,6 +26,9 @@ containers:
       - type: cache
         name: node_modules
         container: /code/node_modules
+    ports:
+      - local: 5000
+        container: 5000
     working_directory: /code
     run_as_current_user:
       enabled: true
@@ -31,23 +37,19 @@ containers:
 
 tasks:
 
-  start-client:
-    description: Start the poker client
+  start-game:
+    description: Start the poker client & server (if not started)
     run:
       container: poker-client
-      ports:
-        - local: 3000
-          container: 3000
     prerequisites:
       - install-deps-client
+    dependencies:
+      - poker-server
 
   start-server:
     description: Start the poker server
     run:
       container: poker-server
-      ports:
-        - local: 5000
-          container: 5000
     prerequisites:
       - install-deps-server
 
