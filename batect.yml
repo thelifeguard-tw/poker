@@ -15,14 +15,26 @@ containers:
     enable_init_process: true
 
 tasks:
-  start-game:
-    description: Start the poker game
+
+  start-client:
+    description: Start the poker client
     run:
       container: poker-game
       command: yarn start-client
       ports:
         - local: 3000
           container: 3000
+    prerequisites:
+      - install-deps
+
+  start-server:
+    description: Start the poker server
+    run:
+      container: poker-game
+      command: yarn start-server
+      ports:
+        - local: 5000
+          container: 5000
     prerequisites:
       - install-deps
 
