@@ -27,7 +27,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "./batect run-unit-tests"
+      "pre-push": "./batect test-client"
     }
   },
   "workspaces": [

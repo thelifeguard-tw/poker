@@ -65,10 +65,18 @@ tasks:
       container: poker-server
       command: yarn --network-timeout 60000
 
-  run-unit-tests:
-    description: Run the unit tests
+  test-client:
+    description: Run the unit tests for client
     run:
       container: poker-client
       command: yarn test-client --watchAll=false
     prerequisites:
       - install-deps-client
+
+  test-server:
+    description: Run the unit tests for server
+    run:
+      container: poker-server
+      command: yarn test-server
+    prerequisites:
+      - install-deps-server
