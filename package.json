@@ -8,10 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start-client": "yarn workspace client start",
-    "test-client": "yarn workspace client test",
+    "test-client": "yarn workspace client test --watchAll=false",
     "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
     "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "start-server": "yarn workspace server start:dev",
+    "start-server": "yarn workspace server start",
     "test-server": "yarn workspace server test",
     "lint-server": "yarn workspace server eslint . --ext .js,.ts",
     "format-server": "yarn workspace server eslint . --fix --ext .js,.ts"

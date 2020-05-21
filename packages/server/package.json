@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "tsc": "npx tsc",
-    "start": "ts-node ./src/server"
+    "start": "ts-node ./src/server",
+    "test": "jest"
   },
   "environment": [
     "node"
@@ -25,9 +26,9 @@
     "prettier": "^2.0.5"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
-    "jest": "^26.0.1",
-    "ts-jest": "^26.0.0",
+    "@types/jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
     "typescript": "^3.9.3"
   }
 }
