@@ -13,8 +13,8 @@
     "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "start-server": "yarn workspace server start:dev",
     "test-server": "yarn workspace server test",
-    "lint-server": "yarn workspace server lint",
-    "format-server": "yarn workspace server lint --fix"
+    "lint-server": "yarn workspace server eslint . --ext .js,.ts",
+    "format-server": "yarn workspace server eslint . --fix --ext .js,.ts"
   },
   "lint-staged": {
     "packages/client/**/*.{js,jsx,ts,tsx}": [
