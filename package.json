@@ -8,13 +8,15 @@
   "license": "MIT",
   "scripts": {
     "start-client": "yarn workspace client start",
-    "test-client": "yarn workspace client test",
+    "test-client": "yarn workspace client test --watchAll=false",
+    "watch-client": "yarn workspace client test",
     "lint-client": "yarn workspace client eslint . --ext .js,.jsx,.ts,.tsx",
     "format-client": "yarn workspace client eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "start-server": "yarn workspace server start:dev",
+    "start-server": "yarn workspace server start",
     "test-server": "yarn workspace server test",
-    "lint-server": "yarn workspace server lint",
-    "format-server": "yarn workspace server lint --fix"
+    "watch-server": "yarn workspace server test --watch",
+    "lint-server": "yarn workspace server eslint . --ext .js,.ts",
+    "format-server": "yarn workspace server eslint . --fix --ext .js,.ts"
   },
   "lint-staged": {
     "packages/client/**/*.{js,jsx,ts,tsx}": [
@@ -27,7 +29,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "./batect test-client"
+      "pre-push": "./batect test-all"
     }
   },
   "workspaces": [

@@ -36,7 +36,6 @@ containers:
     enable_init_process: true
 
 tasks:
-
   start-game:
     description: Start the poker client & server (if not started)
     run:
@@ -65,11 +64,17 @@ tasks:
       container: poker-server
       command: yarn --network-timeout 60000
 
+  test-all:
+    description: test all workspaces
+    prerequisites:
+      - test-server
+      - test-client
+
   test-client:
     description: Run the unit tests for client
     run:
       container: poker-client
-      command: yarn test-client --watchAll=false
+      command: yarn test-client
     prerequisites:
       - install-deps-client
 
