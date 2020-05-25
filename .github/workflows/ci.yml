@@ -18,3 +18,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: batect - run test
         run: ./batect test-all
+      - name: build and push image to dockerhub
+        run: |
+          docker tag poker-poker-server twlifeguard/poker-server:latest
+          docker tag poker-poker-client twlifeguard/poker-client:latest
+          docker images
