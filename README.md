@@ -13,12 +13,10 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 ### running test
 
 ```
+./batect test-all
 ./batect test-client
-```
-```
 ./batect test-server
 ```
-
 
 ## Required plugins
 
