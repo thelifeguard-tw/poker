@@ -18,3 +18,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: batect - run test
         run: ./batect test-all
+      - name: build and push image to dockerhub
+        run: |
+          docker login -u ${{ secrets.dockerhub_username }} -p ${{ secrets.dockerhub_password }}
+          docker tag poker-poker-server ${{ secrets.dockerhub_username }}/poker-server:latest
+          docker tag poker-poker-client ${{ secrets.dockerhub_username }}/poker-client:latest
+          docker images
+          docker push ${{ secrets.dockerhub_username }}/poker-server:latest
+          docker push ${{ secrets.dockerhub_username }}/poker-client:latest
