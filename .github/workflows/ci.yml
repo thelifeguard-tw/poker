@@ -16,12 +16,5 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Runs a single command using the runners shell
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - name: install yarn
-        run: npm install -g yarn
-      - name: batect - install client dependency
-        run: ./batect install-deps-client
+      - name: batect - run test
+        run: ./batect test-all
