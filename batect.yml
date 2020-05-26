@@ -70,7 +70,7 @@ tasks:
     description: Run the unit tests for client
     run:
       container: poker-client
-      command: yarn test-client
+      command: yarn test
     prerequisites:
       - install-deps-client
 
@@ -92,7 +92,7 @@ tasks:
     description: Run the unit tests for server
     run:
       container: poker-client
-      command: yarn lint-client
+      command: yarn lint
     prerequisites:
       - install-deps-client
 
