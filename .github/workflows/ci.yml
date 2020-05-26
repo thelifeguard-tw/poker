@@ -16,6 +16,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: batect - run linter
+        run: ./batect lint-all
       - name: batect - run test
         run: ./batect test-all
       - name: build and push image to dockerhub

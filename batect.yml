@@ -85,3 +85,25 @@ tasks:
       command: yarn test-server
     prerequisites:
       - install-deps-server
+
+  lint-all:
+    description: check linting on all workspaces
+    prerequisites:
+      - lint-server
+      - lint-client
+
+  lint-client:
+    description: Run the unit tests for server
+    run:
+      container: poker-client
+      command: yarn lint-client
+    prerequisites:
+      - install-deps-client
+
+  lint-server:
+    description: Run the unit tests for server
+    run:
+      container: poker-server
+      command: yarn lint-server
+    prerequisites:
+      - install-deps-server
