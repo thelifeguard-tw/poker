@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "tsc": "npx tsc",
-    "start": "ts-node ./src/server",
-    "test": "jest"
+    "start": "ts-node ./src/Server",
+    "test": "jest",
+    "lint": "eslint . --ext .ts"
   },
   "environment": [
     "node"
