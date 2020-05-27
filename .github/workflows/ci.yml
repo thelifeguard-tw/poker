@@ -24,7 +24,7 @@ jobs:
         run: |
           docker login -u ${{ secrets.dockerhub_username }} -p ${{ secrets.dockerhub_password }}
           docker build -f ./containers/game-client/Dockerfile -t ${{ secrets.dockerhub_username }}/poker-client:latest .
-          docker tag poker-poker-server ${{ secrets.dockerhub_username }}/poker-server:latest
+          docker build -f ./containers/game-server/Dockerfile -t ${{ secrets.dockerhub_username }}/poker-server:latest .
           docker images
           docker push ${{ secrets.dockerhub_username }}/poker-server:latest
           docker push ${{ secrets.dockerhub_username }}/poker-client:latest
