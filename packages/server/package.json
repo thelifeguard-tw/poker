@@ -6,7 +6,7 @@
     "build": "tsc",
     "start": "ts-node ./src/Server",
     "test": "jest",
-    "lint": "eslint . --ext .ts"
+    "lint": "yarn eslint . --ext .ts"
   },
   "environment": [
     "node"
