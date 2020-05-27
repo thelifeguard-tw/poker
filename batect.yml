@@ -31,7 +31,6 @@ containers:
     enable_init_process: true
 
 tasks:
-
   start-game:
     description: Start the poker client & server (if not started)
     run:
@@ -70,7 +69,7 @@ tasks:
     description: Run the unit tests for client
     run:
       container: poker-client
-      command: yarn test
+      command: yarn test --watchAll=false
     prerequisites:
       - install-deps-client
 
