@@ -15,8 +15,8 @@
     "start-server": "yarn workspace server start",
     "test-server": "yarn workspace server test",
     "watch-server": "yarn workspace server test --watch",
-    "lint-server": "yarn workspace server eslint . --ext .js,.ts",
-    "format-server": "yarn workspace server eslint . --fix --ext .js,.ts"
+    "lint-server": "yarn workspace server lint",
+    "format-server": "yarn workspace server lint --fix"
   },
   "lint-staged": {
     "packages/client/**/*.{js,jsx,ts,tsx}": [
