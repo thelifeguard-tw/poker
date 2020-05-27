@@ -1,13 +1,7 @@
 containers:
   poker-client:
-    build_directory: ./containers/game-client/
-    volumes:
-      - local: .
-        container: /code
-        options: cached
-      - type: cache
-        name: node_modules
-        container: /code/node_modules
+    build_directory: .
+    dockerfile: containers/game-client/dev.Dockerfile
     ports:
       - local: 3000
         container: 3000
@@ -18,7 +12,8 @@ containers:
     enable_init_process: true
 
   poker-server:
-    build_directory: ./containers/game-server/
+    build_directory: .
+    dockerfile: containers/game-server/Dockerfile
     volumes:
       - local: .
         container: /code
@@ -74,7 +69,7 @@ tasks:
     description: Run the unit tests for client
     run:
       container: poker-client
-      command: yarn test-client
+      command: yarn test --watchAll=false
     prerequisites:
       - install-deps-client
 
@@ -83,5 +78,27 @@ tasks:
     run:
       container: poker-server
       command: yarn test-server
+    prerequisites:
+      - install-deps-server
+
+  lint-all:
+    description: check linting on all workspaces
+    prerequisites:
+      - lint-server
+      - lint-client
+
+  lint-client:
+    description: Run the unit tests for server
+    run:
+      container: poker-client
+      command: yarn lint
+    prerequisites:
+      - install-deps-client
+
+  lint-server:
+    description: Run the unit tests for server
+    run:
+      container: poker-server
+      command: yarn lint-server
     prerequisites:
       - install-deps-server

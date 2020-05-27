@@ -9,20 +9,22 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  test:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: batect - run linter
+        run: ./batect lint-all
       - name: batect - run test
         run: ./batect test-all
       - name: build and push image to dockerhub
         run: |
           docker login -u ${{ secrets.dockerhub_username }} -p ${{ secrets.dockerhub_password }}
+          docker build -f ./containers/game-client/Dockerfile -t ${{ secrets.dockerhub_username }}/poker-client:latest .
           docker tag poker-poker-server ${{ secrets.dockerhub_username }}/poker-server:latest
-          docker tag poker-poker-client ${{ secrets.dockerhub_username }}/poker-client:latest
           docker images
           docker push ${{ secrets.dockerhub_username }}/poker-server:latest
           docker push ${{ secrets.dockerhub_username }}/poker-client:latest
