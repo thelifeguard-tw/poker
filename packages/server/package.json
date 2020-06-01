@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "tsc": "npx tsc",
-    "start": "ts-node ./src/server",
-    "test": "jest"
+    "build": "tsc",
+    "start": "ts-node ./src/Server",
+    "test": "jest",
+    "lint": "yarn eslint . --ext .ts"
   },
   "environment": [
     "node"
