@@ -26,11 +26,11 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    bucket = "terraform-state-prod"
-    key    = "poker/terraform.tfstate"
-    region = "ap-southeast-1"
-  }
-}
+# data "terraform_remote_state" "network" {
+#   backend = "s3"
+#   config = {
+#     bucket = "terraform-state-prod"
+#     key    = "poker/terraform.tfstate"
+#     region = "ap-southeast-1"
+#   }
+# }
