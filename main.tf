@@ -10,7 +10,6 @@ provider "aws" {
 
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "terraform-state-prod"
-  region = "ap-souteast-1"
   # Enable versioning so we can see the full revision history of our
   # state files
   versioning {
