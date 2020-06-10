@@ -51,28 +51,28 @@ resource "aws_subnet" "example2" {
   availability_zone = "ap-southeast-1b"
 }
 
-resource "aws_eks_cluster" "default" {
-  name     = "default"
-  role_arn = "${aws_iam_role.example.arn}"
+# resource "aws_eks_cluster" "default" {
+#   name     = "default"
+#   role_arn = "${aws_iam_role.example.arn}"
 
-  vpc_config {
-    subnet_ids = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
-  }
+#   vpc_config {
+#     subnet_ids = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
+#   }
 
-  # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
-  # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
-  depends_on = [
-    "aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy",
-    "aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy",
-  ]
-}
-output "endpoint" {
-  value = "${aws_eks_cluster.default.endpoint}"
-}
+#   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
+#   # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
+#   depends_on = [
+#     "aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy",
+#     "aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy",
+#   ]
+# }
+# output "endpoint" {
+#   value = "${aws_eks_cluster.default.endpoint}"
+# }
 
-output "kubeconfig-certificate-authority-data" {
-  value = "${aws_eks_cluster.default.certificate_authority.0.data}"
-}
+# output "kubeconfig-certificate-authority-data" {
+#   value = "${aws_eks_cluster.default.certificate_authority.0.data}"
+# }
 resource "aws_iam_role" "example" {
   name = "eks-cluster-example"
 
