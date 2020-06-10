@@ -37,13 +37,27 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+resource "aws_subnet" "example1" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-southeast-1"
+}
+resource "aws_subnet" "example2" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "ap-southeast-2"
+}
+
 resource "aws_eks_cluster" "default" {
   name     = "default"
   role_arn = "${aws_iam_role.example.arn}"
 
-  # vpc_config {
-  #   subnet_ids = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
-  # }
+  vpc_config {
+    subnet_ids = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
+  }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
   # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
