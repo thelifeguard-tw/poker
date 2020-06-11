@@ -15,7 +15,7 @@ module.exports = {
     jest: true,
   },
   rules: {
-    "prettier/prettier": ["error", { singleQuote: true }],
+    "prettier/prettier": ["warn", { singleQuote: true }],
   },
   rules: {
     "@typescript-eslint/explicit-function-return-type": ["off"],
