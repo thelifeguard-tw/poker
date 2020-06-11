@@ -4,6 +4,7 @@ import { NumberFromString as TNum } from "io-ts-types/lib/NumberFromString"
 import "jest-extended"
 import {
   defaultHandleError,
+  HandleParseError,
   RawRequest,
   RawResponse,
   wrap,
@@ -104,7 +105,29 @@ describe("api handler wrapping function", () => {
     expect(mockRes.receivedJson.query).toEqual({ someBoolean: false })
     expect(mockRes.receivedJson.body).toEqual(mockReq.body)
   })
-  test.todo("accept custom error handler")
+  it("should accept custom error handler", () => {
+    const mockReq: RawRequest = {
+      headers: {},
+      params: {},
+      query: {},
+      body: {},
+    }
+
+    const mockRes = new MockRawResponse()
+    const reqBodyD = T.type({ nope: T.string })
+    const customErrorHandler: HandleParseError = (e, res) =>
+      res.status(500).json("boom")
+    const handler = wrap(
+      reqBodyD,
+      T.unknown,
+      T.unknown,
+      T.unknown
+    )(req => ({ status: 200, body: "success" }), customErrorHandler)
+
+    handler(mockReq, mockRes)
+    expect(mockRes.receivedStatus).toEqual(500)
+    expect(mockRes.receivedJson).toEqual("boom")
+  })
 
   test.todo("allow skipping wrapping request body")
   test.todo("allow skip wrapping URL and query params")
