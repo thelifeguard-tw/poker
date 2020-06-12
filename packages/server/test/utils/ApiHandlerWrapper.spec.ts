@@ -1,6 +1,8 @@
+import * as O from "fp-ts/lib/Option"
 import * as T from "io-ts"
 import { BooleanFromString as TBool } from "io-ts-types/lib/BooleanFromString"
 import { NumberFromString as TNum } from "io-ts-types/lib/NumberFromString"
+import { optionFromNullable as TOpt } from "io-ts-types/lib/optionFromNullable"
 import "jest-extended"
 import {
   defaultHandleError,
@@ -8,6 +10,9 @@ import {
   RawRequest,
   RawResponse,
   wrap,
+  wrapBodies,
+  wrapGet,
+  wrapResponseBody,
 } from "src/utils/ApiHandlerWrapper"
 
 class MockRawResponse implements RawResponse {
@@ -129,7 +134,93 @@ describe("api handler wrapping function", () => {
     expect(mockRes.receivedJson).toEqual("boom")
   })
 
-  test.todo("allow skipping wrapping request body")
-  test.todo("allow skip wrapping URL and query params")
-  test.todo("allow wrapping only response body")
+  it("should support skipping wrapping request body", () => {
+    const mockReq = {
+      headers: {},
+      params: {
+        p: "p1",
+      },
+      query: {
+        q: "q1",
+      },
+      body: null,
+    }
+    const mockRes = new MockRawResponse()
+    const resE = T.number
+    const paramD = T.type({ p: T.string })
+    const queryD = T.type({ q: T.string })
+
+    const handler = wrapGet(
+      resE,
+      paramD,
+      queryD
+    )(
+      req => ({
+        status: 200,
+        body: 1,
+      }),
+      defaultHandleError
+    )
+
+    handler(mockReq, mockRes)
+
+    expect(mockRes.receivedJson).toEqual(1)
+    expect(mockRes.receivedStatus).toEqual(200)
+  })
+  it("should support skip wrapping URL and query params", () => {
+    const mockReq: RawRequest = {
+      headers: {},
+      params: {},
+      query: {},
+      body: {
+        something: "else",
+      },
+    }
+
+    const mockRes = new MockRawResponse()
+    const reqBodyD = T.type({
+      something: T.string,
+    })
+
+    const resBodyE = T.type({
+      key: T.string,
+    })
+
+    const wrapper = wrapBodies(reqBodyD, resBodyE)(
+      req => ({
+        status: 201,
+        body: {
+          key: req.body.something,
+        },
+      }),
+      defaultHandleError
+    )
+    wrapper(mockReq, mockRes)
+    expect(mockRes.receivedStatus).toEqual(201)
+    expect(mockRes.receivedJson).toEqual({ key: "else" })
+  })
+  it("should support wrapping only response body", () => {
+    const mockReq: RawRequest = {
+      headers: {},
+      params: {},
+      query: {},
+      body: null,
+    }
+
+    const mockRes = new MockRawResponse()
+
+    const resBodyE = TOpt(T.number)
+
+    const handler = wrapResponseBody(resBodyE)(
+      req => ({
+        status: 200,
+        body: O.some(777),
+      }),
+      defaultHandleError
+    )
+
+    handler(mockReq, mockRes)
+    expect(mockRes.receivedJson).toEqual(777)
+    expect(mockRes.receivedStatus).toEqual(200)
+  })
 })
