@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: [ "@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint", "prettier"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -15,10 +15,10 @@ module.exports = {
     jest: true,
   },
   rules: {
-    "prettier/prettier": ["error", { singleQuote: true }],
+    "prettier/prettier": ["warn", { singleQuote: true }],
   },
   rules: {
     "@typescript-eslint/explicit-function-return-type": ["off"],
   },
   parser: "@typescript-eslint/parser",
-};
+}
