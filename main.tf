@@ -16,8 +16,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "lifeguard-prod" {
-  ami           = "ami-0615132a0f36d24f4"
-  instance_type = "t2.micro"
+  ami             = "ami-0615132a0f36d24f4"
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.secure-shell-ec2.name]
 
   provisioner "remote-exec" {
     inline = [
@@ -25,6 +26,19 @@ resource "aws_instance" "lifeguard-prod" {
       "sudo apt-get install curl docker openjdk-8-jdk",
       "sudo curl -o batect https://github.com/batect/batect/releases/download/0.53.1/batect"
     ]
+  }
+}
+
+resource "aws_security_group" "secure-shell-ec2" {
+  name        = "secure-shell-ec2"
+  description = "For connecting SSH to EC2 instances"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "ssh"
   }
 }
 
