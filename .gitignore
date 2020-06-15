@@ -156,3 +156,5 @@ yarn-error.log*
 .batect/
 
 .terraform/
+
+ssh/
