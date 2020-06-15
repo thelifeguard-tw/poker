@@ -31,7 +31,7 @@ resource "aws_instance" "lifeguard-prod" {
     connection {
       type = "ssh"
       host = aws_instance.lifeguard-prod.public_ip
-      user = ec2-user
+      user = "ec2-user"
       port = 22
     }
   }
