@@ -73,6 +73,8 @@ jobs:
 
       - name: generate EC2 pem file
         run: |
+          mkdir ssh
+          touch ssh/key.pem
           echo "$SSH_KEY" > ssh/key.pem
         shell: bash
         env:
