@@ -73,7 +73,10 @@ jobs:
 
       - name: generate EC2 pem file
         run: |
-          echo ${{ secrets.AWS_EC2_PEM_TEST1 }} > ssh/key.pem
+          echo "$SSH_KEY" > ssh/key.pem
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.AWS_EC2_PEM_TEST1}}
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
