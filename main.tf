@@ -19,6 +19,7 @@ resource "aws_instance" "lifeguard-prod" {
   ami             = "ami-0615132a0f36d24f4"
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.secure-shell-ec2.name]
+  # key_name        = "test1"
 
   provisioner "remote-exec" {
     inline = [
@@ -26,6 +27,13 @@ resource "aws_instance" "lifeguard-prod" {
       "sudo apt-get install curl docker openjdk-8-jdk",
       "sudo curl -o batect https://github.com/batect/batect/releases/download/0.53.1/batect"
     ]
+
+    connection {
+      type = "ssh"
+      host = aws_instance.lifeguard-prod.public_ip
+      user = ec2-user
+      port = 22
+    }
   }
 }
 
@@ -41,6 +49,7 @@ resource "aws_security_group" "secure-shell-ec2" {
     description = "ssh"
   }
 }
+
 
 # resource "aws_s3_bucket" "terraform_state" {
 #   bucket = "tw-poker-terraform-state-prod-please-be-uniq"
