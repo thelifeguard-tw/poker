@@ -16,7 +16,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "lifeguard-prod" {
-  ami             = "ami-0615132a0f36d24f4"
+  # AMI: Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type
+  ami             = "ami-0fe1ff5007e7820fd"
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.secure-shell-ec2.name]
   key_name        = "test1"
@@ -25,8 +26,6 @@ resource "aws_instance" "lifeguard-prod" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update",
-      "sudo apt-get install curl docker openjdk-8-jdk",
       "sudo curl -o batect https://github.com/batect/batect/releases/download/0.53.1/batect"
     ]
     connection {
