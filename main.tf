@@ -30,6 +30,7 @@ resource "aws_instance" "lifeguard-prod" {
       "sudo update-alternatives --set java /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java",
       "sudo curl -L -o batect https://github.com/batect/batect/releases/download/0.53.1/batect",
       "sudo bash ./batect --version"
+      "sudo chmod +x /usr/bin/docker"
     ]
     connection {
       type        = "ssh"

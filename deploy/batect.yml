@@ -1,0 +1,28 @@
+containers:
+  poker-client:
+    image: twlifeguard/poker-client
+    ports:
+      - local: 80
+        container: 3000
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+    enable_init_process: true
+
+  poker-server:
+    image: twlifeguard/poker-server
+    ports:
+      - local: 5000
+        container: 5000
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+    enable_init_process: true
+
+tasks:
+  start-game:
+    description: Start the poker client & server (if not started)
+    run:
+      container: poker-client
+    dependencies:
+      - poker-server
