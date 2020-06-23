@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-import "firebase/analytics";
+// import "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-30HySY5vQ06dZSHuVlS8W6ZCHpCb_kY",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
 export const signIn = (
   callback: (user: firebase.auth.UserCredential) => void
