@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { signIn } from "./poc/Firebase";
+
+type userCredential = {
+  uid: string;
+  displayName: string;
+  refreshToken: string;
+  getIdToken: () => Promise<string>;
+};
 
 function App(): JSX.Element {
+  const [user, setUser] = useState<userCredential | null>();
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +27,24 @@ function App(): JSX.Element {
         >
           Learn React !!
         </a>
+        <button
+          onClick={() =>
+            signIn((cred) => {
+              if (cred.user) {
+                const user: userCredential = {
+                  uid: cred.user.uid,
+                  displayName: cred.user.displayName || "anonymous naja",
+                  refreshToken: cred.user.refreshToken,
+                  getIdToken: cred.user.getIdToken,
+                };
+                setUser(user);
+              }
+            })
+          }
+        >
+          sign in
+        </button>
+        {user && <p>{user.uid}</p>}
       </header>
     </div>
   );
