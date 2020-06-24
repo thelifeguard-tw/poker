@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { signIn } from "./poc/Firebase";
+import { signIn, subscribeLoginState, signOut } from "./poc/Firebase";
 
-type userCredential = {
+type User = {
   uid: string;
   displayName: string;
   refreshToken: string;
@@ -11,7 +11,20 @@ type userCredential = {
 };
 
 function App(): JSX.Element {
-  const [user, setUser] = useState<userCredential | null>();
+  const [user, setUser] = useState<User | null>();
+  useEffect(() => {
+    subscribeLoginState((u) => {
+      if (u) {
+        const user: User = {
+          uid: u.uid,
+          displayName: u.displayName || "",
+          refreshToken: u.refreshToken,
+          getIdToken: u.getIdToken,
+        };
+        setUser(user);
+      }
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -27,23 +40,35 @@ function App(): JSX.Element {
         >
           Learn React !!
         </a>
-        <button
-          onClick={() =>
-            signIn((cred) => {
-              if (cred.user) {
-                const user: userCredential = {
-                  uid: cred.user.uid,
-                  displayName: cred.user.displayName || "anonymous naja",
-                  refreshToken: cred.user.refreshToken,
-                  getIdToken: cred.user.getIdToken,
-                };
-                setUser(user);
-              }
-            })
-          }
-        >
-          sign in
-        </button>
+        {!user && (
+          <button
+            onClick={() =>
+              signIn((cred) => {
+                if (cred.user) {
+                  const user: User = {
+                    uid: cred.user.uid,
+                    displayName: cred.user.displayName || "anonymous naja",
+                    refreshToken: cred.user.refreshToken,
+                    getIdToken: cred.user.getIdToken,
+                  };
+                  setUser(user);
+                }
+              })
+            }
+          >
+            sign in
+          </button>
+        )}
+        {user && (
+          <button
+            onClick={() => {
+              signOut();
+              setUser(null);
+            }}
+          >
+            sign out
+          </button>
+        )}
         {user && <p>{user.uid}</p>}
       </header>
     </div>

@@ -30,3 +30,15 @@ export const signIn = (
       console.log(error);
     });
 };
+
+export const subscribeLoginState = (
+  callback: (user: firebase.User | null) => void
+): void => {
+  firebase.auth().onAuthStateChanged((user): void => {
+    callback(user);
+  });
+};
+
+export const signOut = () => {
+  firebase.auth().signOut();
+};
