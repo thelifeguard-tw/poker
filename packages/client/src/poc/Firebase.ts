@@ -42,3 +42,7 @@ export const subscribeLoginState = (
 export const signOut = () => {
   firebase.auth().signOut();
 };
+
+export const currentUser = () => {
+  return firebase.auth().currentUser;
+};

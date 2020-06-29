@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { signIn, subscribeLoginState, signOut } from "./poc/Firebase";
+import {
+  signIn,
+  subscribeLoginState,
+  signOut,
+  currentUser,
+} from "./poc/Firebase";
+import axios from "axios";
 
 type User = {
   uid: string;
@@ -25,6 +31,16 @@ function App(): JSX.Element {
       }
     });
   }, []);
+  const listUser = async () => {
+    // const token = user?.refreshToken || '';
+    const token = await currentUser()?.getIdToken();
+    const res = await axios.post(
+      "http://localhost:5000/users",
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log(res);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -70,6 +86,7 @@ function App(): JSX.Element {
           </button>
         )}
         {user && <p>{user.uid}</p>}
+        <button onClick={listUser}>User List</button>
       </header>
     </div>
   );
