@@ -4,9 +4,7 @@ The poker game built by THELIFEGUARDS during beach time to show off how much we 
 
 ## environment setup
 
-```
-export GOOGLE_APPLICATION_CREDENTIALS='your_private_keys'
-```
+Copy .env.local from 1Password Vault into ./packages/server
 
 ## common commands
 

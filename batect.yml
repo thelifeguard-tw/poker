@@ -20,8 +20,6 @@ containers:
       enabled: true
       home_directory: /home/container-user
     enable_init_process: true
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS
 
 tasks:
   start-game:

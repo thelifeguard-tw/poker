@@ -12,18 +12,17 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Set environment variables for all steps
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS_PRIVATE_KEY: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PRIVATE_KEY }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: batect - run linter
         run: ./batect lint-all
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: batect - run test
         run: ./batect test-all
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: build and push image to dockerhub
         run: |
           docker login -u ${{ secrets.dockerhub_username }} -p ${{ secrets.dockerhub_password }}
@@ -32,5 +31,3 @@ jobs:
           docker images
           docker push ${{ secrets.dockerhub_username }}/poker-server:latest
           docker push ${{ secrets.dockerhub_username }}/poker-client:latest
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
