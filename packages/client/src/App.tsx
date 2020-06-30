@@ -35,7 +35,7 @@ function App(): JSX.Element {
     // const token = user?.refreshToken || '';
     const token = await currentUser()?.getIdToken();
     const res = await axios.post(
-      "http://localhost:5000/users",
+      process.env.REACT_APP_API_ENDPOINT + "/users",
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
