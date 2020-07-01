@@ -1,5 +1,5 @@
-import * as express from "express"
 import cors from "cors"
+import * as express from "express"
 import { users, verify } from "./poc/Firebase"
 
 const app = express.default()
